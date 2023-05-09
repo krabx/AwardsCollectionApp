@@ -21,10 +21,18 @@ struct MainView: View {
             }
             
             Spacer()
+            
             if awardIsShowing {
-                GradientRectangles()
-                    .frame(width: 250, height: 250)
-                    .transition(.leadingSlide)
+//                GradientRectangles()
+//                    .frame(width: 250, height: 250)
+//                    .transition(.leadingSlide)
+                Text("Welcome, 007")
+                    .animation(.easeIn(duration: 5))
+                    .font(.title)
+                    .foregroundColor(.cyan)
+                WineGlassView()
+                    .frame(width: 300, height: 300)
+                    .transition(.opacityMove)
             }
             
             Spacer()
@@ -41,11 +49,11 @@ struct MainView: View {
 }
 
 extension AnyTransition {
-    static var leadingSlide: AnyTransition {
-        let insertion = AnyTransition.move(edge: .leading)
-            .combined(with: .scale)
-        let removal = AnyTransition.move(edge: .trailing)
-            .combined(with: .scale)
+    static var opacityMove: AnyTransition {
+        let insertion = AnyTransition.move(edge: .top)
+            .combined(with: .opacity)
+        let removal = AnyTransition.move(edge: .bottom)
+            .combined(with: .opacity)
         
         return .asymmetric(insertion: insertion, removal: removal)
     }
