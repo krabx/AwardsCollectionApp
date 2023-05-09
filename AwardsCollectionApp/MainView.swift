@@ -50,9 +50,9 @@ struct MainView: View {
 
 extension AnyTransition {
     static var opacityMove: AnyTransition {
-        let insertion = AnyTransition.move(edge: .top)
-            .combined(with: .opacity)
-        let removal = AnyTransition.move(edge: .bottom)
+        let insertion = AnyTransition.move(edge: .leading)
+            .combined(with: .scale(scale: 2, anchor: .topLeading)).animation(.easeInOut(duration: 1))
+        let removal = AnyTransition.move(edge: .top)
             .combined(with: .opacity)
         
         return .asymmetric(insertion: insertion, removal: removal)
